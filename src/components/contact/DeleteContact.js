@@ -10,6 +10,8 @@ import { deleteContact, retrieveContacts} from "../../actions/contacts";
 import {Trash as DeleteIcon} from "react-feather";
 import {IconButton} from "@material-ui/core";
 import PropTypes from "prop-types";
+import { withSnackbar } from "../SnackbarAlert";
+
 class DeleteContact extends Component{
     constructor(props) {
         super(props);
@@ -36,6 +38,7 @@ class DeleteContact extends Component{
                 console.log(data);
                 this.hideModalDelete()
                 this.props.sendData()
+                this.props.snackbarShowMessage("Delete data contact success.")
             })
             .catch((e) => {
                 console.log(e);
@@ -92,4 +95,4 @@ const mapDispatchToProps = dispatch =>{
 }
 
 
-export default connect(null, mapDispatchToProps)(DeleteContact)
+export default connect(null, mapDispatchToProps)(withSnackbar(DeleteContact))

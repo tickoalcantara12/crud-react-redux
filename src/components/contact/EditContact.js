@@ -11,6 +11,8 @@ import { updateContact, retrieveContacts } from "../../actions/contacts";
 import {IconButton} from "@material-ui/core";
 import {Edit2 as Edit} from "react-feather";
 import PropTypes from "prop-types";
+import { withSnackbar} from "../SnackbarAlert";
+
 class  EditContact extends Component {
     constructor(props){
         super(props);
@@ -25,7 +27,6 @@ class  EditContact extends Component {
 
     };
 
-
     showModal = () => {
         this.setState({ show: true });
     };
@@ -35,6 +36,7 @@ class  EditContact extends Component {
     };
 
     handleSubmit(event){
+
         const {firstName, lastName, age, photo} = this.state;
         const id = this.props.contact.id
         const data = {firstName: firstName, lastName: lastName, age: age, photo: photo}
@@ -47,6 +49,7 @@ class  EditContact extends Component {
                 console.log(data);
                 this.hideModal()
                 this.props.sendData()
+                this.props.snackbarShowMessage("Update data contact success.")
             })
             .catch((e) => {
                 console.log(e);
@@ -67,6 +70,7 @@ class  EditContact extends Component {
 
 
     render() {
+
         return (
             <div>
                 <IconButton
@@ -155,6 +159,4 @@ const mapDispatchToProps = dispatch =>{
     }
 }
 
-
-
-export default connect(null, mapDispatchToProps)(EditContact)
+export default connect(null, mapDispatchToProps)(withSnackbar(EditContact))

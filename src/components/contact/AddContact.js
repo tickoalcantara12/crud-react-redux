@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import { connect } from 'react-redux';
 import {createContact, retrieveContacts} from "../../actions/contacts";
+import { withSnackbar} from "../SnackbarAlert";
 
 class  AddContact extends Component {
     constructor(props){
@@ -39,6 +40,7 @@ class  AddContact extends Component {
                 console.log(data);
                 this.hideModal()
                 this.props.sendData()
+                this.props.snackbarShowMessage("Add data contact success.")
             })
             .catch((e) => {
                 console.log(e);
@@ -141,4 +143,4 @@ const mapDispatchToProps = dispatch =>{
     }
 }
 
-export default connect(null, mapDispatchToProps )(AddContact)
+export default connect(null, mapDispatchToProps )(withSnackbar(AddContact))

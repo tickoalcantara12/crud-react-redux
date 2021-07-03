@@ -24,7 +24,12 @@ const useStyles = makeStyles(() => createStyles({
     '#root': {
       height: '100%',
       width: '100%'
-    }
+    },
+    '.MuiAlert-filledSuccess': {
+      color: '#fff !important',
+      'font-weight': '500 !important',
+      'background-color': '#4caf50 !important',
+    },
   }
 }));
 
